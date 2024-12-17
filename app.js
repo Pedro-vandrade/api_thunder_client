@@ -8,7 +8,6 @@ app.use(express.json())
 
 const loja = ('Projeto API - Loja Online')
 
-const produtos = []
 
 app.get('/loja', (req, res) => {
     res.send(`Seja bem vindo a ${loja}`)
