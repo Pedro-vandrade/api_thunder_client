@@ -1,4 +1,5 @@
 import express from 'express'
+import produtos from './produtos.js'
 const app = express()
 
 const PORT = 3000
@@ -15,6 +16,17 @@ app.get('/loja', (req, res) => {
 
 app.get('/produtos', (req, res) => {
     return res.json(produtos)
+})
+
+app.get('/produtos/:id', (req, res) => {
+    const { id } = req.params
+    const produto = produtos.find(prod => prod.id === Number(id))
+
+    if(!produto) {
+        return res.status(404).json({mensagem: " Produto não encontrado."})
+    }
+
+    return res.json(produto)
 })
 
 app.post('/produtos', (req, res) => {
